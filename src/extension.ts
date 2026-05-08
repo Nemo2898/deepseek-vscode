@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as cp from 'child_process';
 import * as fs from 'fs';
 import * as os from 'os';
+import * as path from 'path';
 
 const TERMINAL_NAME = 'DeepSeek TUI';
 const BINARY_NAME = 'deepseek-tui';
@@ -70,14 +71,27 @@ async function openDeepSeek(context: vscode.ExtensionContext) {
 }
 
 async function resolveBinary(): Promise<string | null> {
-  const cargoBin = `${os.homedir()}/.cargo/bin/${BINARY_NAME}`;
+  const isWin = process.platform === 'win32';
+
+  // cargo: ~/.cargo/bin/deepseek-tui[.exe]
+  const cargoExt = isWin ? '.exe' : '';
+  const cargoBin = path.join(os.homedir(), '.cargo', 'bin', BINARY_NAME + cargoExt);
   if (await isExecutable(cargoBin)) return cargoBin;
 
+  // npm
   try {
     await exec('npm', ['list', '-g', 'deepseek-tui']);
     const prefix = (await exec('npm', ['prefix', '-g'])).trim();
-    const npmBin = `${prefix}/bin/${BINARY_NAME}`;
-    if (await isExecutable(npmBin)) return npmBin;
+
+    if (isWin) {
+      for (const ext of ['.cmd', '.ps1', '']) {
+        const npmBin = path.join(prefix, BINARY_NAME + ext);
+        if (await isExecutable(npmBin)) return npmBin;
+      }
+    } else {
+      const npmBin = path.join(prefix, 'bin', BINARY_NAME);
+      if (await isExecutable(npmBin)) return npmBin;
+    }
   } catch {}
 
   return null;
