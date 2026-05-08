@@ -1,6 +1,6 @@
 {
   "name": "deepseek-tui-live",
-  "displayName": "DeepSeek TUI Launcher",
+  "displayName": "DeepSeek TUI Live",
   "description": "Quick-launch DeepSeek TUI in the VS Code built-in terminal. Requires deepseek-tui binary installed via cargo install / npm install -g. https://github.com/Hmbown/DeepSeek-TUI",
   "version": "0.1.0",
   "publisher": "Nm2",
