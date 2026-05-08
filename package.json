@@ -1,0 +1,44 @@
+{
+  "name": "deepseek-tui-launcher",
+  "displayName": "DeepSeek TUI Launcher",
+  "description": "Quick-launch DeepSeek TUI in the VS Code built-in terminal",
+  "version": "0.1.0",
+  "publisher": "Hmbown",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "deepseek-tui.open",
+        "title": "DeepSeek TUI: Open",
+        "icon": "$(terminal)"
+      }
+    ],
+    "configuration": {
+      "title": "DeepSeek TUI",
+      "properties": {
+        "deepseek-tui.binaryPath": {
+          "type": "string",
+          "default": "deepseek-tui",
+          "description": "Path to the deepseek-tui binary."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.3.0"
+  }
+}
