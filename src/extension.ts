@@ -62,12 +62,15 @@ async function openDeepSeek(context: vscode.ExtensionContext) {
   context.globalState.update(STORED_PATH_KEY, resolved);
 
   let terminal = vscode.window.terminals.find(t => t.name === TERMINAL_NAME);
+  const isNew = !terminal;
   if (!terminal) {
     terminal = vscode.window.createTerminal(TERMINAL_NAME);
   }
 
   terminal.show();
-  terminal.sendText(resolved);
+  if (isNew) {
+    terminal.sendText(resolved);
+  }
 }
 
 async function resolveBinary(): Promise<string | null> {
