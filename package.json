@@ -3,8 +3,12 @@
   "displayName": "DeepSeek TUI Launcher",
   "description": "Quick-launch DeepSeek TUI in the VS Code built-in terminal",
   "version": "0.1.0",
-  "publisher": "Hmbown",
+  "publisher": "Nemo2898",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nemo2898/deepseek-vscode.git"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -37,8 +41,9 @@
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
     "@types/node": "^18.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.1",
     "typescript": "^5.3.0"
   }
 }
