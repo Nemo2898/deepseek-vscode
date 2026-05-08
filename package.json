@@ -9,6 +9,7 @@
     "type": "git",
     "url": "https://github.com/Nemo2898/deepseek-vscode.git"
   },
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },
